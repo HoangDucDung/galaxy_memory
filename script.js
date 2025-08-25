@@ -591,9 +591,9 @@ scene.add(planet);
 // ---- TẠO CÁC VÒNG CHỮ QUAY QUANH HÀNH TINH ----
 const ringTexts = [
   'Việt Nam',
-  "Cao Chung Đạt",
-  "Nguyễn Ngọc Yến Nhi",
-  "20/03/2005",
+  "Chàng hoàng tử",
+  "Công chúa",
+  "25/08/2025",
   ...(window.dataCCD?.data?.ringTexts || [])
 ];
 
@@ -684,17 +684,35 @@ function createTextRings() {
     ctx.textAlign = 'left';
     ctx.textBaseline = 'alphabetic';
 
-    // Hiệu ứng glow cho viền chữ
+    // Hiệu ứng glow cho viền chữ (tăng độ dày và nhiều lớp để sáng hơn)
+    ctx.lineJoin = 'round';
+    ctx.miterLimit = 2;
+
+    // Lớp glow ngoài cùng (hồng tím nhẹ hơn)
+    ctx.shadowColor = '#b400ff';
+    ctx.shadowBlur = 30;
+    ctx.strokeStyle = '#b400ff';
+    ctx.lineWidth = 10;
+    ctx.strokeText(fullText, 0, textureHeight * 0.82);
+
+    // Lớp glow trung gian (tím sáng, mảnh hơn)
     ctx.shadowColor = '#e0b3ff';
     ctx.shadowBlur = 18;
+    ctx.strokeStyle = '#e0b3ff';
     ctx.lineWidth = 7;
-    ctx.strokeStyle = '#fff';
-    ctx.strokeText(fullText, 0, textureHeight * 0.82); // căn dòng thấp hơn
+    ctx.strokeText(fullText, 0, textureHeight * 0.82);
 
-    // Hiệu ứng glow cho phần fill
+    // Lớp viền trắng sắc nét (mỏng)
+    ctx.shadowColor = '#ffffff';
+    ctx.shadowBlur = 6;
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 3;
+    ctx.strokeText(fullText, 0, textureHeight * 0.82);
+
+    // Hiệu ứng glow cho phần fill (nhẹ hơn)
     ctx.shadowColor = '#ffb3de';
-    ctx.shadowBlur = 24;
-    ctx.fillStyle = '#fff';
+    ctx.shadowBlur = 12;
+    ctx.fillStyle = '#ffffff';
     ctx.fillText(fullText, 0, textureHeight * 0.84);
 
     const ringTexture = new THREE.CanvasTexture(textCanvas);
