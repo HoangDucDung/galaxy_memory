@@ -89,7 +89,10 @@ if (!window.dataCCD) {
   window.dataCCD = { data: {} };
 }
 
-const defaultHeartImages = Array.from({ length: 2 }, (_, i) => `images/img${i + 1}.jpg`);
+const defaultHeartImages = [
+  'images/chibi_nam.png',
+  'images/chibi_nu.png'
+];
 
 const heartImages = [
   ...(window.dataCCD?.data?.heartImages || []),
