@@ -5,7 +5,7 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 // ---- KHỞI TẠO SCENE, CAMERA, RENDERER ----
 const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0x000000, 0.0015);
-debugger
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
 camera.position.set(0, 20, 30);
 
@@ -90,14 +90,18 @@ if (!window.dataCCD) {
 }
 
 const defaultHeartImages = [
-  'images/chibi_nam.png',
-  'images/chibi_nu.png'
+  'images/img_1.jpeg',
+  'images/img_2.jpeg',
+  'images/img_3.jpeg',
+  'images/img_4.jpeg',
 ];
 
-const heartImages = [
-  ...(window.dataCCD?.data?.heartImages || []),
-  ...defaultHeartImages,
-];
+// Lấy tối đa 4 ảnh: ưu tiên từ window.dataCCD nếu có, nếu không dùng mặc định
+const heartImages = (
+  (window.dataCCD?.data?.heartImages && window.dataCCD.data.heartImages.length > 0)
+    ? window.dataCCD.data.heartImages
+    : defaultHeartImages
+).slice(0, 4);
 
 const textureLoader = new THREE.TextureLoader();
 const numGroups = heartImages.length;
@@ -818,7 +822,7 @@ let galaxyAudio = null;
 
 function preloadGalaxyAudio() {
   const audioSources = [
-    "AE THEM NHAC TUY NHA"
+    'images/noi_nay_co_anh.mp3'
   ];
 
   const randomIndex = Math.floor(Math.random() * audioSources.length);
