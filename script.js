@@ -593,7 +593,6 @@ const ringTexts = [
   'Việt Nam',
   "Chàng hoàng tử",
   "Công chúa",
-  "25/08/2025",
   ...(window.dataCCD?.data?.ringTexts || [])
 ];
 
@@ -688,17 +687,17 @@ function createTextRings() {
     ctx.lineJoin = 'round';
     ctx.miterLimit = 2;
 
-    // Lớp glow ngoài cùng (hồng tím nhẹ hơn)
-    ctx.shadowColor = '#b400ff';
-    ctx.shadowBlur = 30;
-    ctx.strokeStyle = '#b400ff';
+    // Lớp glow ngoài cùng (hồng đậm hơn)
+    ctx.shadowColor = '#ff1493';
+    ctx.shadowBlur = 10;
+    ctx.strokeStyle = '#ff1493';
     ctx.lineWidth = 10;
     ctx.strokeText(fullText, 0, textureHeight * 0.82);
 
-    // Lớp glow trung gian (tím sáng, mảnh hơn)
-    ctx.shadowColor = '#e0b3ff';
+    // Lớp glow trung gian (hồng sáng, mảnh hơn)
+    ctx.shadowColor = '#ff4da6';
     ctx.shadowBlur = 18;
-    ctx.strokeStyle = '#e0b3ff';
+    ctx.strokeStyle = '#ff4da6';
     ctx.lineWidth = 7;
     ctx.strokeText(fullText, 0, textureHeight * 0.82);
 
@@ -709,8 +708,8 @@ function createTextRings() {
     ctx.lineWidth = 3;
     ctx.strokeText(fullText, 0, textureHeight * 0.82);
 
-    // Hiệu ứng glow cho phần fill (nhẹ hơn)
-    ctx.shadowColor = '#ffb3de';
+    // Hiệu ứng glow cho phần fill (hồng dịu)
+    ctx.shadowColor = '#ff66b3';
     ctx.shadowBlur = 12;
     ctx.fillStyle = '#ffffff';
     ctx.fillText(fullText, 0, textureHeight * 0.84);
